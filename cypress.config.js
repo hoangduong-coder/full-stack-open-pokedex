@@ -1,3 +1,6 @@
+/* eslint-disable semi */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable no-unused-vars */
 const {defineConfig} = require ('cypress');
 
 module.exports = defineConfig ({
