@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es6: true,
     'jest/globals': true,
     node: true,
     commonjs: true,
