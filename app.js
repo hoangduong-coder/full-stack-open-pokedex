@@ -10,7 +10,7 @@ app.get ('/health', (req, res) => {
 });
 
 app.get ('/something', (req, res) => {
-  res.send ('change');
+  res.send ('changed');
 });
 
 app.use (express.static ('dist'));
