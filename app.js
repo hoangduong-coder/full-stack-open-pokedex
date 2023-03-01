@@ -9,6 +9,10 @@ app.get ('/health', (req, res) => {
   res.send ('hello');
 });
 
+app.get ('/something', (req, res) => {
+  res.send ('change');
+});
+
 app.use (express.static ('dist'));
 
 app.listen (PORT, () => {
