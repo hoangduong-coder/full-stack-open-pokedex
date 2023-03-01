@@ -37,6 +37,20 @@ jobs:
           command: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Successful deploy
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ github.event_name == 'push' && success()}}
+        with:
+          severity: info
+          details: New version deployed successfully!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Failed deploy
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ github.event_name == 'push' && failure()}}
+        with:
+          severity: info
+          details: Cannot deploy new version!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
