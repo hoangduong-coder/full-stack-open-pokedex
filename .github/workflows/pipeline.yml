@@ -50,7 +50,7 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ github.event_name == 'push' && failure()}}
         with:
-          severity: info
+          severity: error
           description: Cannot deploy new version!
           details: hoangduong-coder broke the build ${{ github.event.head_commit.url }}!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
