@@ -30,11 +30,12 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:5000
-      - name: Deploy app
+      - name: Fly.io first set up
         if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
         uses: superfly/flyctl-actions/setup-flyctl@master
-        with:
-          command: flyctl deploy --remote-only
+      - name: Deploy to fly.io
+        if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
+        run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       - name: Successful deploy
@@ -43,7 +44,7 @@ jobs:
         with:
           severity: info
           description: New version deployed successfully!
-          details: new commit url ${{ github.event.head_commit.url }} by hoangduong-coder
+          details: to https://summer-wood-2718.fly.dev/ by hoangduong-coder
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Failed deploy
         uses: rjstone/discord-webhook-notify@v1

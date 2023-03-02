@@ -1,22 +1,17 @@
-# fly.toml file generated for cool-fire-2069 on 2023-03-01T10:40:01+07:00
+# fly.toml file generated for summer-wood-2718 on 2023-03-02T14:04:14+07:00
 
-app = "cool-fire-2069"
+app = "summer-wood-2718"
 kill_signal = "SIGINT"
 kill_timeout = 5
-
-[deploy]
-  release_command = "npm run build"
-
-[processes]
-  app = "node app.js"
+processes = []
 
 [env]
-  PORT = "8080"
 
 [experimental]
   auto_rollback = true
 
 [[services]]
+  http_checks = []
   internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
@@ -41,13 +36,8 @@ kill_timeout = 5
     restart_limit = 0
     timeout = "2s"
 
-  [[services.http_checks]]
-    interval = 10000
-    grace_period = "5s"
-    method = "get"
-    path = "/health"
-    protocol = "http"
-    restart_limit = 0
-    timeout = 2000
-    tls_skip_verify = false
-    [services.http_checks.headers]
+[deploy]
+  release_command = "npm run build"
+
+[processes]
+  app = "node app.js"
