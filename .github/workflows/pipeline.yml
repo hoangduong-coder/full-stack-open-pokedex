@@ -43,7 +43,7 @@ jobs:
         with:
           severity: info
           description: New version deployed successfully!
-          details: new commit url ${{ github.events.repository.url }} by hoangduong-coder
+          details: new commit url ${{ github.event.head_commit.url }} by hoangduong-coder
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Failed deploy
         uses: rjstone/discord-webhook-notify@v1
@@ -51,7 +51,7 @@ jobs:
         with:
           severity: info
           description: Cannot deploy new version!
-          details: hoangduong-coder broke the build ${{ github.events.repository.url }}!
+          details: hoangduong-coder broke the build ${{ github.event.head_commit.url }}!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]
