@@ -1,6 +1,6 @@
 #!/bin/bash
 
-res=$(curl localhost:5000/health)
+res=$(curl https://summer-wood-2718.fly.dev/health)
 echo $res
 
 if [[ $res -eq 'ok' ]]
