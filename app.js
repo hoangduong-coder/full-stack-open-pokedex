@@ -13,6 +13,10 @@ app.get ('/something', (req, res) => {
   res.send ('changed');
 });
 
+app.get ('/new', (req, res) => {
+  res.send ('hello');
+});
+
 app.use (express.static ('dist'));
 
 app.listen (PORT, () => {
