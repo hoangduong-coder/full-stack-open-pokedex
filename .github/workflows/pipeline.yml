@@ -42,14 +42,16 @@ jobs:
         if: ${{ github.event_name == 'push' && success()}}
         with:
           severity: info
-          details: New version deployed successfully!
+          description: New version deployed successfully!
+          details: new commit url ${{ github.events.repository.url }} by hoangduong-coder
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Failed deploy
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ github.event_name == 'push' && failure()}}
         with:
           severity: info
-          details: Cannot deploy new version!
+          description: Cannot deploy new version!
+          details: hoangduong-coder broke the build ${{ github.events.repository.url }}!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]
