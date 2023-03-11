@@ -1,0 +1,16 @@
+name: Period health-check
+
+on:
+  schedule:
+    - cron: "5 * * * *"
+
+jobs:
+  test_schedule:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v3
+        with:
+          url: https://summer-wood-2718.fly.dev/health
+          max-attempts: 3
+          retry-delay: 5s
